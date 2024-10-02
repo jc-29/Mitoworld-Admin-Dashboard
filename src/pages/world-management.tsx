@@ -1,11 +1,13 @@
+import { useEffect, useState } from 'react';
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
 import TableOne from '../components/Tables/TableOne';
 import TableThree from '../components/Tables/TableThree';
 import TableTwo from '../components/Tables/TableTwo';
 import { Package } from '../types/package';
+import axios from 'axios';
 
 const Tables = () => {
-  const data: Package[] = [
+  const [data, setData] = useState<Package[]>([
     {
       world_id: '1',
       world_name: 'Timberland in Forest',
@@ -102,7 +104,19 @@ const Tables = () => {
       visits: '0',
       template: 'Forest',
     },
-  ];
+  ]);
+  
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+    };
+  };
+  }, []);
+
   return (
     <>
       <Breadcrumb pageName="World Management" />

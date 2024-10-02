@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import WorldManagement from './pages/world-management';
 import WorldManagementEdu from './pages/world-management-edu';
+import WorldDetails from './pages/world-details';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
@@ -96,6 +97,15 @@ function App() {
             <>
               <PageTitle title="World Management" />
               <WorldManagementEdu />
+            </>
+          }
+        />
+        <Route
+          path="/world-details"
+          element={
+            <>
+              <PageTitle title="World Details" />
+              <WorldDetails />
             </>
           }
         />
