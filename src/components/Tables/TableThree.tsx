@@ -95,60 +95,60 @@ const TableThree: React.FC<TableThreeProps> = ({ data }) => {
         </p>
         <div className="flex gap-0.5">
           <div
-            className="border border-[#E2E8F0] size-[1.5dvw] rounded-sm cursor-pointer relative dark:border-[#ababab]"
+            className="border border-[#E2E8F0] shadow-md size-[1.5dvw] rounded-sm cursor-pointer relative dark:border-[#ababab]"
             onClick={handleStartPageClick}
           >
             
-            <img src={LeftArrowDouble} />
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xmlSpace="preserve" fill="ababab" className='stroke-black dark:stroke-white'><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}} points="16.6,26.5 6.1,16 16.6,5.5 "></polyline> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}}points="23.6,26.5 13.1,16 23.6,5.5 "></polyline> </g></svg>
             {currentPage == 1 && (
-              <div className="absolute top-0 cursor-default size-full bg-[#edeff261] "></div>
+              <div className="absolute top-0 cursor-default size-full bg-[#edeff2c7] "></div>
             )}
           </div>
           <div
-            className="border border-[#E2E8F0] size-[1.5dvw] rounded-sm cursor-pointer relative dark:border-[#ababab]"
+            className="border border-[#E2E8F0] size-[1.5dvw] shadow-md rounded-sm cursor-pointer relative dark:border-[#ababab]"
             onClick={handlePrevPageClick}
           >
-            <img src={RightArrowSingle} className="rotate-180" />
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='rotate-180 stroke-black dark:stroke-white'><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 7L15 12L10 17" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
             {currentPage == 1 && (
-              <div className="absolute top-0 cursor-default size-full bg-[#edeff261]"></div>
+              <div className="absolute top-0 cursor-default size-full bg-[#edeff2c7]"></div>
             )}
           </div>
           {currentPage != 1 && (
             <div
-              className="border border-[#E2E8F0] size-[1.5dvw] flex justify-center items-center text-xs text-black rounded-sm cursor-pointer dark:border-[#ababab] dark:text-white"
+              className="border border-[#E2E8F0] shadow-md size-[1.5dvw] flex justify-center items-center text-xs text-black rounded-sm cursor-pointer dark:border-[#ababab] dark:text-white"
               onClick={handlePrevPageClick}
             >
               {currentPage - 1}
             </div>
           )}
-          <div className="border border-[#E2E8F0] size-[1.5dvw] flex justify-center items-center text-xs text-white rounded-sm bg-[#155A9F] cursor-pointer dark:border-[#ababab] dark:text-white">
+          <div className="border border-[#E2E8F0] shadow-md size-[1.5dvw] flex justify-center items-center text-xs text-white rounded-sm bg-[#155A9F] cursor-pointer dark:border-[#ababab] dark:text-white">
             {currentPage}
           </div>
           {!(currentPage * rowLimit >= data.length) && (
             <div
-              className="border border-[#E2E8F0] size-[1.5dvw] flex justify-center items-center text-xs text-black rounded-sm cursor-pointer dark:text-white"
+              className="border border-[#E2E8F0] shadow-md size-[1.5dvw] flex justify-center items-center text-xs text-black rounded-sm cursor-pointer dark:text-white"
               onClick={handleNextPageClick}
             >
               {currentPage + 1}
             </div>
           )}
           <div
-            className="border border-[#E2E8F0] size-[1.5dvw] rounded-sm cursor-pointer relative dark:border-[#ababab]"
+            className="border border-[#E2E8F0] shadow-md size-[1.5dvw] rounded-sm cursor-pointer relative dark:border-[#ababab]"
             onClick={handleNextPageClick}
           >
-            <img src={RightArrowSingle} />
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='stroke-black dark:stroke-white'><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 7L15 12L10 17" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
             {currentPage * rowLimit >= data.length && (
-              <div className="absolute top-0 cursor-default size-full bg-[#edeff261] "></div>
+              <div className="absolute top-0 cursor-default size-full bg-[#edeff2c7] "></div>
             )}
           </div>
           <div
-            className="border border-[#E2E8F0] size-[1.5dvw] rounded-sm cursor-pointer relative dark:border-[#ababab]"
+            className="border border-[#E2E8F0] shadow-md size-[1.5dvw] rounded-sm cursor-pointer relative dark:border-[#ababab]"
             onClick={handleEndPageClick}
           >
-            <img src={LeftArrowDouble} className="rotate-180" />
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xmlSpace="preserve" fill="ababab" className='rotate-180 stroke-black dark:stroke-white'><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}} points="16.6,26.5 6.1,16 16.6,5.5 "></polyline> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}}points="23.6,26.5 13.1,16 23.6,5.5 "></polyline> </g></svg>
 
             {currentPage * rowLimit >= data.length && (
-              <div className="absolute top-0 cursor-default size-full bg-[#edeff261] "></div>
+              <div className="absolute top-0 cursor-default size-full bg-[#edeff2c7] "></div>
             )}
           </div>
         </div>
