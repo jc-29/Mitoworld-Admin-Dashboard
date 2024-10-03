@@ -29,7 +29,80 @@ const Tables = () => {
       <p className="text-sm text-[#666] dark:text-[#999]">Here you can edit world details, manage ownership and archive/delete worlds.</p>
       </span>
       <div className="rounded-2xl border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-      <div className="max-w-full overflow-x-auto"></div>
+      <div className="w-full overflow-x-auto">
+        <h3 className='text-title-sm font-bold mb-5 text-black dark:text-white'>World Details</h3>
+        <div className='flex w-full'>
+            <table className='w-full'>
+              <tbody className='w-full'>
+              <tr>
+                  <td className='align-top font-semibold whitespace-nowrap text-black dark:text-white'>World Thumbnail</td>
+                  <td className='pb-7 pl-10'><img className='rounded-full bg-gray size-[13dvh]'/></td>
+                </tr>
+                <tr>
+                  <td className='align-top font-semibold text-black dark:text-white'>World Name</td>
+                  <td className='pb-7 pl-10 align-top text-black dark:text-white'>World name in Forest</td>
+                  <td className='pl-10 align-top font-semibold text-black dark:text-white'>Email</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>email@email.com</td>
+                </tr>
+                <tr>
+                  <td className='align-top font-semibold text-black dark:text-white'>World ID</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>123455555</td>
+                  <td className='pl-10 align-top font-semibold text-black dark:text-white'>Status</td>
+                  <td className='pb-7 pl-10 align-top text-black dark:text-white'>Un-published</td>
+                </tr>
+                <tr>
+                  <td className='align-top font-semibold text-black dark:text-white'>Date Created</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>01/12/2023</td>
+                  <td className='pl-10 align-top font-semibold text-black dark:text-white'>Subscriptions</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>MitoPro - Yearly</td>
+                </tr>
+                <tr className='w-full'>
+                  <td className='align-top font-semibold text-black dark:text-white'>World Link</td>
+                  <td className='pb-7 pl-10 max-w-30 break-word break-all align-top text-[#64748B]'>http://mitoworld.io/world/w/311/timerberland-in-forest</td>
+                  <td className='pl-10 align-top font-semibold text-black dark:text-white'>Date Created</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>19/12/2023</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+      </div>
+      <div className="rounded-2xl border border-stroke bg-white mt-5 px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+      <div className="w-full overflow-x-auto">
+      <h3 className='text-title-sm font-bold mb-5 text-black dark:text-white'>World Analytics</h3>
+      <table className='w-full'>
+              <tbody className='w-full'>
+                <tr>
+                  <td className='align-top font-semibold text-black dark:text-white'>Total Visits</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>12</td>
+                  <td className='pl-10 align-top font-semibold text-black dark:text-white'>Total Playtime</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>1200 min 34 sec</td>
+                </tr>
+                <tr>
+                  <td className='align-top font-semibold text-black dark:text-white'>Total Likes</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>7</td>
+                  <td className='pl-10 align-top font-semibold text-black dark:text-white'>Avg. Playtime 
+                  (per user)</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>10 min 6 sec</td>
+                </tr>
+                <tr>
+                  <td className='align-top font-semibold text-black dark:text-white'>Average Monthly Visits</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>18</td>
+                  <td className='pl-10 align-top font-semibold text-black dark:text-white'>Retention Rate (Day 1)</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>67%</td>
+                </tr>
+                <tr className='w-full'>
+                  <td className='align-top font-semibold text-black dark:text-white'>Storage</td>
+                  <td className='pb-7 pl-10 break-word align-top text-[#64748B]'>
+                    <div className='flex flex-col'>
+                      <div className='w-[90%] h-1 rounded-md bg-[#DEDEDE] dark:bg-[#f6f5f55d] mb-2'><div className='h-full w-[66%] bg-black rounded-sm dark:bg-[#DEDEDE]'></div></div>
+                      <p className='text-xs'>3.1 MB of 5 MB available (66%)</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
       </div>
     </>
   );
