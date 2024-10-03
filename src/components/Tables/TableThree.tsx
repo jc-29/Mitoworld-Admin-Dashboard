@@ -3,13 +3,13 @@ import LeftArrowDouble from '../../images/icon/left-arrow-double.svg';
 import RightArrowSingle from '../../images/icon/right-arrow-single.svg';
 import { useEffect, useState } from 'react';
 
-interface TableThreeProps {
-  data: Package[];
-}
+// interface TableThreeProps {
+//   data: Package[];
+// }
 const rowLimit = 10;
 
-const TableThree: React.FC<TableThreeProps> = ({ data }) => {
-  const [rows, setRows] = useState<Package[]>([]);
+const TableThree = ({ data, setOpenDetails } : { data: any[], setOpenDetails: Function }) => {
+  const [rows, setRows] = useState<any[]>(data);
   const [currentPage, setCurrentPage] = useState(1);
   const lastPage = Math.ceil(data.length / rowLimit);
   const handleNextPageClick = () => {
@@ -27,11 +27,16 @@ const TableThree: React.FC<TableThreeProps> = ({ data }) => {
     setCurrentPage(lastPage);
   };
 
+  const handleViewClick = (dataObj: any) => {
+    setOpenDetails(dataObj);
+  };
+
   useEffect(() => {
     setRows(data.slice(rowLimit * (currentPage - 1), rowLimit * currentPage));
   }, [currentPage]);
   
   return (
+    <>
     <div className="rounded-2xl border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
@@ -69,16 +74,16 @@ const TableThree: React.FC<TableThreeProps> = ({ data }) => {
                   <p className="text-black dark:text-white">{row.world_name}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">{row.email}</p>
+                  <p className="text-black dark:text-white">email@email.com</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">{row.visits}</p>
+                  <p className="text-black dark:text-white">0</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">{row.template}</p>
+                  <p className="text-black dark:text-white">{row.template_name}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <button className="border border-[#E2E8F0] rounded-xl px-5 py-1.5 text-[#155A9F] text-sm font-semibold py-1 hover:bg-[#E2E8F0] dark:text-white dark:hover:bg-[#e2e8f02e]">
+                  <button className="border border-[#E2E8F0] rounded-xl px-5 py-1.5 text-[#155A9F] text-sm font-semibold py-1 hover:bg-[#E2E8F0] dark:text-white dark:hover:bg-[#e2e8f02e]" onClick={()=>handleViewClick(row)}>
                     View
                   </button>
                 </td>
@@ -99,7 +104,7 @@ const TableThree: React.FC<TableThreeProps> = ({ data }) => {
             onClick={handleStartPageClick}
           >
             
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xmlSpace="preserve" fill="ababab" className='stroke-black dark:stroke-white'><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}} points="16.6,26.5 6.1,16 16.6,5.5 "></polyline> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}}points="23.6,26.5 13.1,16 23.6,5.5 "></polyline> </g></svg>
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xmlSpace="preserve" fill="ababab" className='stroke-black dark:stroke-white'><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}} points="16.6,26.5 6.1,16 16.6,5.5 "></polyline> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}}points="23.6,26.5 13.1,16 23.6,5.5 "></polyline> </g></svg>
             {currentPage == 1 && (
               <div className="absolute top-0 cursor-default size-full bg-[#edeff2c7] "></div>
             )}
@@ -145,7 +150,7 @@ const TableThree: React.FC<TableThreeProps> = ({ data }) => {
             className="border border-[#E2E8F0] shadow-md size-[1.5dvw] rounded-sm cursor-pointer relative dark:border-[#ababab]"
             onClick={handleEndPageClick}
           >
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xmlSpace="preserve" fill="ababab" className='rotate-180 stroke-black dark:stroke-white'><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}} points="16.6,26.5 6.1,16 16.6,5.5 "></polyline> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}}points="23.6,26.5 13.1,16 23.6,5.5 "></polyline> </g></svg>
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xmlSpace="preserve" fill="ababab" className='rotate-180 stroke-black dark:stroke-white'><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}} points="16.6,26.5 6.1,16 16.6,5.5 "></polyline> <polyline style={{fill:'none', strokeWidth:'2', strokeMiterlimit:'10'}}points="23.6,26.5 13.1,16 23.6,5.5 "></polyline> </g></svg>
 
             {currentPage * rowLimit >= data.length && (
               <div className="absolute top-0 cursor-default size-full bg-[#edeff2c7] "></div>
@@ -154,6 +159,7 @@ const TableThree: React.FC<TableThreeProps> = ({ data }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

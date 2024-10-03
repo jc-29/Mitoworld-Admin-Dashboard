@@ -5,25 +5,30 @@ import { Package } from '../types/package';
 import BackArrow from '../images/icon/right-arrow-single.svg';
 import axios from 'axios';
 
-const Tables = () => {
-  const [data, setData] = useState([]);
+const Tables = ({openDetails, setOpenDetails} : {openDetails: any, setOpenDetails: Function}) => {
+  const [data, setData] = useState(openDetails);
   
    useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://api.mitoworld.io/api/v1/world-data/search');
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-    };
-  };
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get('https://api.mitoworld.io/api/v1/world-data/search');
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //   };
+  // };
+  console.log(openDetails);
   }, []);
+
+  const handleCloseDetails = () => {
+    setOpenDetails(null);
+  };
 
   return (
     <>
       <span className='flex flex-col mb-5'>
       <h2 className="text-title-md2 font-semibold text-black dark:text-white flex items-center">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='h-[2rem] stroke-black dark:stroke-white rotate-180 cursor-pointer'><g id="SVGRepo_bgCarrier" strokeWidth="0" ></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier" > <path d="M10 7L15 12L10 17" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='h-[2rem] stroke-black dark:stroke-white rotate-180 cursor-pointer hover:bg-[#b9b9b978] rounded-full' onClick={handleCloseDetails}><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier" > <path d="M10 7L15 12L10 17" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
       World Details
       </h2>
       <p className="text-sm text-[#666] dark:text-[#999]">Here you can edit world details, manage ownership and archive/delete worlds.</p>
@@ -36,17 +41,17 @@ const Tables = () => {
               <tbody className='w-full'>
               <tr>
                   <td className='align-top font-semibold whitespace-nowrap text-black dark:text-white'>World Thumbnail</td>
-                  <td className='pb-7 pl-10'><img className='rounded-full bg-gray size-[13dvh]'/></td>
+                  <td className='pb-7 pl-10'><img src={data.world_pic} className='rounded-full bg-gray size-[13dvh]'/></td>
                 </tr>
                 <tr>
                   <td className='align-top font-semibold text-black dark:text-white'>World Name</td>
-                  <td className='pb-7 pl-10 align-top text-black dark:text-white'>World name in Forest</td>
+                  <td className='pb-7 pl-10 align-top text-black dark:text-white'>{data.world_name}</td>
                   <td className='pl-10 align-top font-semibold text-black dark:text-white'>Email</td>
                   <td className='pb-7 pl-10 align-top text-[#64748B]'>email@email.com</td>
                 </tr>
                 <tr>
                   <td className='align-top font-semibold text-black dark:text-white'>World ID</td>
-                  <td className='pb-7 pl-10 align-top text-[#64748B]'>123455555</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>{data.world_id}</td>
                   <td className='pl-10 align-top font-semibold text-black dark:text-white'>Status</td>
                   <td className='pb-7 pl-10 align-top text-black dark:text-white'>Un-published</td>
                 </tr>
@@ -58,9 +63,9 @@ const Tables = () => {
                 </tr>
                 <tr className='w-full'>
                   <td className='align-top font-semibold text-black dark:text-white'>World Link</td>
-                  <td className='pb-7 pl-10 max-w-30 break-word break-all align-top text-[#64748B]'>http://mitoworld.io/world/w/311/timerberland-in-forest</td>
+                  <td className='pb-7 pl-10 max-w-35 break-word break-all align-top text-[#64748B]'>{data.link_demo}</td>
                   <td className='pl-10 align-top font-semibold text-black dark:text-white'>Date Created</td>
-                  <td className='pb-7 pl-10 align-top text-[#64748B]'>19/12/2023</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>{data.created_date_time}</td>
                 </tr>
               </tbody>
             </table>
