@@ -41,7 +41,11 @@ const Tables = () => {
       <>
         <Breadcrumb pageName="World Management" />
         <div className="flex flex-col gap-10">
-          <TableThree data={data as typeof data} setOpenDetails={setOpenDetails} />
+          {data.length > 0 ? <TableThree data={data as typeof data} setOpenDetails={setOpenDetails} /> : 
+          <div className="flex h-screen items-center justify-center">
+            <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent">
+            </div>
+          </div>}
         </div>
       </>}
     </>

@@ -8,8 +8,8 @@ import { useEffect, useState } from 'react';
 // }
 const rowLimit = 10;
 
-const TableThree = ({ data, setOpenDetails } : { data: any[], setOpenDetails: Function }) => {
-  const [rows, setRows] = useState<any[]>(data);
+const TableThree = ({ data, setOpenDetails } : { data: any, setOpenDetails: Function }) => {
+  const [rows, setRows] = useState<any>(data);
   const [currentPage, setCurrentPage] = useState(1);
   const lastPage = Math.ceil(data.length / rowLimit);
   const handleNextPageClick = () => {
@@ -30,6 +30,11 @@ const TableThree = ({ data, setOpenDetails } : { data: any[], setOpenDetails: Fu
   const handleViewClick = (dataObj: any) => {
     setOpenDetails(dataObj);
   };
+
+    useEffect(() => {
+      console.log(data);
+    }, []);
+
 
   useEffect(() => {
     setRows(data.slice(rowLimit * (currentPage - 1), rowLimit * currentPage));
