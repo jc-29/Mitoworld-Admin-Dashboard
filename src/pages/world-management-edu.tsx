@@ -5,126 +5,49 @@ import TableThree from '../components/Tables/TableThree';
 import TableTwo from '../components/Tables/TableTwo';
 import { Package } from '../types/package';
 import axios from 'axios';
+import WorldDetails from './world-details';
 
 const Tables = () => {
-  const [data, setData] = useState<Package[]>([
-    {
-      world_id: '1',
-      world_name: 'Timberland in Forest',
-      email: 'othniel@gmail.com',
-      visits: '100,000',
-      template: 'Forest',
-    },
-    {
-      world_id: '2',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '90,030',
-      template: 'Forest',
-    },
-    {
-      world_id: '3',
-      world_name: 'Timberland in Forest',
-      email: 'othniel@gmail.com',
-      visits: '1,100',
-      template: 'Forest',
-    },
-    {
-      world_id: '4',
-      world_name: 'Timberland in Forest',
-      email: 'othniel@gmail.com',
-      visits: '569',
-      template: 'Forest',
-    },
-    {
-      world_id: '5',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '1',
-      template: 'Forest',
-    },
-    {
-      world_id: '6',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '0',
-      template: 'Forest',
-    },
-    {
-      world_id: '7',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '0',
-      template: 'Forest',
-    },
-    {
-      world_id: '8',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '0',
-      template: 'Forest',
-    },
-    {
-      world_id: '9',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '0',
-      template: 'Forest',
-    },
-    {
-      world_id: '10',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '0',
-      template: 'Forest',
-    },{
-      world_id: '11',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '0',
-      template: 'Forest',
-    },{
-      world_id: '123566',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '0',
-      template: 'Forest',
-    },
-    {
-      world_id: '123566',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '0',
-      template: 'Forest',
-    },
-    {
-      world_id: '123566',
-      world_name: 'Rain Sound and Forest',
-      email: 'othniel@gmail.com',
-      visits: '0',
-      template: 'Forest',
-    },
-  ]);
-  
+  const [openDetails, setOpenDetails] = useState(null);
+  const [data, setData] = useState([]);
+
    useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
+      let formData = new FormData();
+      formData.append("type", "trending");
+      formData.append("limit", "999999")
+      formData.append("include_json", "0");
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "https://api.mitoworld.io/api/v1/world-data/search-list",
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.W10.GZGwmXGZ3PdHULNQeYSiDcxEgQCvHfqT1OHEtgl__ew`,
+      },
+      data: formData,
     };
+
+    const response = await axios.request(config);
+    setData(response.data.worldDetails);
   };
+  fetchData();
   }, []);
+
   return (
     <>
-      <Breadcrumb pageName="World Management - Education" />
-
-      <div className="flex flex-col gap-10">
-        {/* <TableOne />
-        <TableTwo /> */}
-        <TableThree data={data} />
-      </div>
+      
+      {openDetails != null ? <WorldDetails openDetails={openDetails} setOpenDetails={setOpenDetails} /> : 
+      <>
+        <Breadcrumb pageName="World Management" />
+        <div className="flex flex-col gap-10">
+          {data.length > 0 ? <TableThree data={data as typeof data} setOpenDetails={setOpenDetails} /> : 
+          <div className="flex h-screen items-center justify-center">
+            <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent">
+            </div>
+          </div>}
+        </div>
+      </>}
     </>
   );
 };

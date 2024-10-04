@@ -14,7 +14,7 @@ const Tables = () => {
    useEffect(() => {
     const fetchData = async () => {
       let formData = new FormData();
-      formData.append("type", "search");
+      formData.append("type", "trending");
       formData.append("limit", "999999")
       formData.append("include_json", "0");
 

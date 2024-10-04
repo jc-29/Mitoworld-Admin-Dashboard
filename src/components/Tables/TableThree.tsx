@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 const rowLimit = 10;
 
 const TableThree = ({ data, setOpenDetails } : { data: any, setOpenDetails: Function }) => {
-  const [rows, setRows] = useState<any>(data);
+  const [rows, setRows] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const lastPage = Math.ceil(data.length / rowLimit);
   const handleNextPageClick = () => {
@@ -82,7 +82,7 @@ const TableThree = ({ data, setOpenDetails } : { data: any, setOpenDetails: Func
                   <p className="text-black dark:text-white">email@email.com</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">0</p>
+                  <p className="text-black dark:text-white">{row.numOfSeen}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="text-black dark:text-white">{row.template_name}</p>
