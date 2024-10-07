@@ -3,10 +3,12 @@ import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
 import TableThree from '../components/Tables/TableThree';
 import { Package } from '../types/package';
 import BackArrow from '../images/icon/right-arrow-single.svg';
+import TooltipPoint from '../images/icon/tooltip-point.svg'
 import axios from 'axios';
 
 const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Function, type: string}) => {
   const [data, setData] = useState({});
+  const [linkCopied, setLinkCopied] = useState(false);
   
    useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +40,15 @@ const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Fu
 
   const handleCloseDetails = () => {
     setWorldId('');
+  };
+  
+  const handleLinkCopied = () => {
+    navigator.clipboard.writeText(`https://mitoworld.io/world/${type}/${world_id}/${data.world_link}`);
+    setLinkCopied(!linkCopied);
+    console.log(linkCopied);
+    setTimeout(() => {
+      setLinkCopied(false);
+    }, 1000);
   };
 
   return (
@@ -79,8 +90,9 @@ const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Fu
                 </tr>
                 <tr className='w-full'>
                   <td className='align-top font-semibold text-black dark:text-white'>World Link</td>
-                  <td className='pb-7 pl-10 max-w-33 break-word break-all align-top text-[#64748B]'>
+                  <td className='pb-7 pl-10 max-w-33 break-word break-all align-top text-[#64748B] cursor-pointer flex relative' onClick={handleLinkCopied}>
                     https://mitoworld.io/world/{type}/{world_id}/{data.world_link}
+                    {linkCopied && <span className='absolute left-[100%] z-999 flex items-center text-xs w-30'><img src={TooltipPoint} className='w-2'/><p className='bg-[#155A9F] p-2 text-white rounded-lg'>Link Copied</p></span>}
                     </td>
                   <td className='pl-10 align-top font-semibold text-black dark:text-white'>Date Created</td>
                   <td className='pb-7 pl-10 align-top text-[#64748B]'>{data.created_date_time}</td>
