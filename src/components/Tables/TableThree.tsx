@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 // }
 const rowLimit = 10;
 
-const TableThree = ({ data, setOpenDetails } : { data: any, setOpenDetails: Function }) => {
+const TableThree = ({ data, setWorldId } : { data: any, setWorldId: Function }) => {
   const [rows, setRows] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const lastPage = Math.ceil(data.length / rowLimit);
@@ -28,12 +28,8 @@ const TableThree = ({ data, setOpenDetails } : { data: any, setOpenDetails: Func
   };
 
   const handleViewClick = (dataObj: any) => {
-    setOpenDetails(dataObj);
+    setWorldId(dataObj.world_id);
   };
-
-    useEffect(() => {
-      console.log(data);
-    }, []);
 
 
   useEffect(() => {

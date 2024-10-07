@@ -8,7 +8,7 @@ import axios from 'axios';
 import WorldDetails from './world-details';
 
 const Tables = () => {
-  const [openDetails, setOpenDetails] = useState(null);
+  const [worldId, setWorldId] = useState(''); // for world-details.tsx
   const [data, setData] = useState([]);
 
    useEffect(() => {
@@ -37,11 +37,11 @@ const Tables = () => {
   return (
     <>
       
-      {openDetails != null ? <WorldDetails openDetails={openDetails} setOpenDetails={setOpenDetails} /> : 
+      {worldId != '' ? <WorldDetails world_id={worldId} setWorldId={setWorldId} type='w' /> : 
       <>
         <Breadcrumb pageName="World Management" />
         <div className="flex flex-col gap-10">
-          {data.length > 0 ? <TableThree data={data as typeof data} setOpenDetails={setOpenDetails} /> : 
+          {data.length > 0 ? <TableThree data={data as typeof data} setWorldId={setWorldId} /> : 
           <div className="flex h-screen items-center justify-center">
             <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent">
             </div>
