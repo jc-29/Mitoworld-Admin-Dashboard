@@ -21,7 +21,7 @@ const Tables = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://api.mitoworld.io/api/v1/world-data/search-list",
+      url: "https://api.mitoworld.io/api/v1/mito-passcode/world-list",
       headers: {
         Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.W10.GZGwmXGZ3PdHULNQeYSiDcxEgQCvHfqT1OHEtgl__ew`,
       },
