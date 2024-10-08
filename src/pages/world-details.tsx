@@ -3,12 +3,15 @@ import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
 import TableThree from '../components/Tables/TableThree';
 import { Package } from '../types/package';
 import BackArrow from '../images/icon/right-arrow-single.svg';
-import TooltipPoint from '../images/icon/tooltip-point.svg'
+import TooltipPoint from '../images/icon/tooltip-point.svg';
+import PencilIcon from '../images/icon/pencil-icon.svg';
 import axios from 'axios';
+import EditWorldStatus from '../components/Forms/EditWorldStatus';
 
 const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Function, type: string}) => {
   const [data, setData] = useState({});
   const [linkCopied, setLinkCopied] = useState(false);
+  const [isEditWorldStatus, setIdEditWorldStatus] = useState(false);
   
    useEffect(() => {
     const fetchData = async () => {
@@ -72,7 +75,7 @@ const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Fu
                 </tr>
                 <tr>
                   <td className='align-top font-semibold text-black dark:text-white'>World Name</td>
-                  <td className='pb-7 pl-10 align-top text-black dark:text-white'>{data.world_name}</td>
+                  <td className='pb-7 pl-10 align-top text-black dark:text-white flex'>{data.world_name} <img src={PencilIcon} className='ml-3 cursor-pointer' /></td>
                   <td className='pl-10 align-top font-semibold text-black dark:text-white'>Email</td>
                   <td className='pb-7 pl-10 align-top text-[#64748B]'>email@email.com</td>
                 </tr>
@@ -80,7 +83,7 @@ const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Fu
                   <td className='align-top font-semibold text-black dark:text-white'>World ID</td>
                   <td className='pb-7 pl-10 align-top text-[#64748B]'>{data.world_id}</td>
                   <td className='pl-10 align-top font-semibold text-black dark:text-white'>Status</td>
-                  <td className='pb-7 pl-10 align-top text-black dark:text-white'>{data.world_status == "1" ? "Published" : data.world_status == "0" ? "Un-Published" : "Expired"}</td>
+                  <td className='pb-7 pl-10 align-top flex text-black dark:text-white'>{data.world_status == "1" ? "Published" : data.world_status == "0" ? "Un-Published" : "Expired"}<img src={PencilIcon} className='ml-3 cursor-pointer' onClick={()=>{setIdEditWorldStatus(true); console.log(isEditWorldStatus)}}/></td>
                 </tr>
                 <tr>
                   <td className='align-top font-semibold text-black dark:text-white'>Date Created</td>
@@ -139,6 +142,7 @@ const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Fu
             </table>
       </div>
       </div>
+      {isEditWorldStatus && <EditWorldStatus status={data.world_status} setIdEditWorldStatus={setIdEditWorldStatus}/>}
     </>
   );
 };
