@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import DropdownIcon from '../../images/icon/dropdown-icon.svg';
 import axios from 'axios';
 
-const EditWorldStatus = ({status, setIdEditWorldStatus} : {status: String, setIdEditWorldStatus:Function}) => {
+const EditWorldStatus = ({status, setIsEditWorldStatus} : {status: String, setIsEditWorldStatus:Function}) => {
     const dropdownOptions = ['Published', 'Un-Published', 'Expired'];
     const currentStatus = status == "1" ? "Published" : status == "0" ? "Un-Published" : "Expired";
     const [selectedOption, setSelectedOption] = useState<String>('Please choose')
@@ -37,14 +37,14 @@ const EditWorldStatus = ({status, setIdEditWorldStatus} : {status: String, setId
         </div>
       </div>
       <div className='flex'>
-        <button className='bg-[#155A9F] text-sm text-white rounded-3xl py-5 px-8' onClick={()=>setIdEditWorldStatus(false)}>Cancel</button>
+        <button className='bg-[#155A9F] text-sm text-white rounded-3xl py-5 px-8' onClick={()=>setIsEditWorldStatus(false)}>Cancel</button>
         <button className={`text-sm text-white rounded-3xl py-5 px-8 ml-2 ${selectedOption == currentStatus || selectedOption == 'Please choose' ? 'bg-[#87DBBF] cursor-default' : 'bg-[#10B981]'}`} disabled={selectedOption == currentStatus || selectedOption == 'Please choose'} onClick={handleUpdate}>Update</button>
     </div>
       </div> : 
       <div className='bg-white rounded-2xl w-[35%] p-7 flex flex-col items-center justify-center dark:bg-boxdark'>
             <h3 className='text-title-sm text-center font-bold mb-5 text-black dark:text-white'>World Status Updated</h3>
             <p className='text-center text-black dark:text-white'>An email has been sent to owneremail@gmail.com to notify about the world status update.</p>
-            <button className='text-white rounded-2xl px-6 py-3 bg-[#155A9F] mt-5' onClick={()=>setIdEditWorldStatus(false)}>Done</button>
+            <button className='text-white rounded-2xl px-6 py-3 bg-[#155A9F] mt-5' onClick={()=>setIsEditWorldStatus(false)}>Done</button>
       </div>
       }
       
