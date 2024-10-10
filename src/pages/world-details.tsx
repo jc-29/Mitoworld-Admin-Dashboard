@@ -5,6 +5,7 @@ import { Package } from '../types/package';
 import BackArrow from '../images/icon/right-arrow-single.svg';
 import TooltipPoint from '../images/icon/tooltip-point.svg';
 import PencilIcon from '../images/icon/pencil-icon.svg';
+import CopyIcon from '../images/icon/copy-icon.svg';
 import axios from 'axios';
 import EditWorldStatus from '../components/Forms/EditWorldStatus';
 import EditWorldName from '../components/Forms/EditWorldName';
@@ -96,9 +97,12 @@ const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Fu
                 </tr>
                 <tr className='w-full'>
                   <td className='align-top font-semibold text-black dark:text-white'>World Link</td>
-                  <td className='pb-7 pl-10 max-w-33 break-word break-all align-top text-[#64748B] cursor-pointer flex relative' onClick={handleLinkCopied}>
-                    https://mitoworld.io/world/{type}/{world_id}/{data.world_link}
-                    {linkCopied && <span className='absolute left-[100%] z-999 flex items-center text-xs w-30'><img src={TooltipPoint} className='w-2'/><p className='bg-[#155A9F] p-2 text-white rounded-lg'>Link Copied</p></span>}
+                  <td className='pb-7 pl-10 align-top flex relative'>
+                    <p className='max-w-33 break-word break-all text-[#64748B]'>https://mitoworld.io/world/{type}/{world_id}/{data.world_link}</p>
+                    <span className='relative flex items-center'><img src={CopyIcon} onClick={handleLinkCopied} className='cursor-pointer ml-3'/>
+                    {linkCopied && <span className='absolute left-1 z-999 flex items-center text-xs w-30'><img src={TooltipPoint} className='w-2'/><p className='bg-[#155A9F] p-2 text-white rounded-lg'>Link Copied</p></span>}
+                    </span>
+                    
                     </td>
                   <td className='pl-10 align-top font-semibold text-black dark:text-white'>Date Created</td>
                   <td className='pb-7 pl-10 align-top text-[#64748B]'>{data.created_date_time}</td>
