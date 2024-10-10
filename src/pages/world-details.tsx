@@ -36,7 +36,6 @@ const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Fu
       const response = await axios.request(config); 
       console.log(response.data[0]);
       setData(response.data[0]);
-
       } catch (error) {
         console.error(error);
     };
@@ -55,6 +54,21 @@ const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Fu
     setTimeout(() => {
       setLinkCopied(false);
     }, 1000);
+  };
+
+  const getMonthDifference = (startDate:Date, endDate:Date) => {
+    return (
+      (endDate.getFullYear() - startDate.getFullYear()) * 12 +
+      (endDate.getMonth() - startDate.getMonth())
+    );
+  }
+  
+  const calcAvgVisits = (startDateString:string) => {
+    const totalVisits = Number(data.visit_count);
+    const startDate = new Date(startDateString);
+    const today = new Date();
+    return Math.ceil(totalVisits / getMonthDifference(startDate, today));
+
   };
 
   return (
@@ -132,7 +146,7 @@ const Tables = ({world_id, setWorldId, type} : {world_id: string, setWorldId: Fu
                 </tr>
                 <tr>
                   <td className='align-top font-semibold text-black dark:text-white'>Average Monthly Visits</td>
-                  <td className='pb-7 pl-10 align-top text-[#64748B]'>18</td>
+                  <td className='pb-7 pl-10 align-top text-[#64748B]'>{calcAvgVisits(data.created_date_time)}</td>
                   <td className='pl-10 align-top font-semibold text-black dark:text-white'>Retention Rate (Day 1)</td>
                   <td className='pb-7 pl-10 align-top text-[#64748B]'>67%</td>
                 </tr>
